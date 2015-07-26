@@ -1,0 +1,40 @@
+.list-region, .content-region {
+	padding-top: 20px;
+}
+#list {
+	max-height: 800px;
+	overflow: scroll;
+}
+.read {
+	background-color: #BBB;
+}
+.unread, .read {
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 10px;
+	border-bottom: dotted #999;
+	cursor: pointer;
+}
+.unread:hover, .read:hover{
+	background-color: lightblue;
+}
+.btn-group {
+	margin: 0 auto;
+	width: 100%;
+	margin-bottom: 15px;
+}
+.btn-default {
+	width: 50%;
+}
+.list-region {
+	background-color: #EEE;
+}
+.selected {
+	background-color: white;
+	margin-right: 50px;
+	margin-left: 20px;
+}
+small{
+	float: right;
+	color: darkblue;
+}
