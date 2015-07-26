@@ -6,6 +6,14 @@ var Mails = Backbone.Collection.extend({
   url: "../data/email.json",
   parse: function(response) {
     return response;
+  },
+  sort_key: 'dateReceived', // default sort key
+  comparator: function(item) {
+      return -item.get(this.sort_key); // Note the minus for desc order!
+  },
+  sortByField: function(fieldName) {
+      this.sort_key = fieldName;
+      this.sort();
   }
 });
 
@@ -35,3 +43,5 @@ list.fetch({
     console.log('There was some error in loading and processing the JSON file');
   }
 });
+// Call the sort method
+list.sortByField('dateReceived');
