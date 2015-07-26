@@ -109,3 +109,11 @@ var listView = new MailsView({
   collection: list
 });
 $("#list").append( listView.render().el );
+
+// Filter Unread and Read mails
+$('#unread-list').click( function(){
+  $('.read').slideUp(400);
+});
+$('#all-list').click( function(){
+  $('.read').slideDown(400);
+});
