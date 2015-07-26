@@ -7,6 +7,26 @@
 </head>
 <body>
 
+	<div class="container-full">
+		<div class="col-md-4 list-region">
+		</div>
+		<div class="col-md-8 content-region">	
+		</div>
+	</div>
+
+	<script id="mailView" type="text/template">
+		<p><strong><%= fromName %></strong><small><%= timeAgo %></small><p>
+		<p>Re: <%= subject %></p>
+	</script>
+
+	<script id="contentView" type="text/template">
+		<p>From: <strong><%= fromName %></strong></p>
+		<p>Received: <strong><%= dateReceivedFormat %></strong></p>
+		<hr>
+		<h3>Subject: <strong><%= subject %></strong></h3>
+		<p><%= content %></p>
+	</script>
+
 	<script src="js/jquery-2.1.3.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/underscore-min.js"></script>
