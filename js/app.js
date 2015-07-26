@@ -60,6 +60,17 @@ var MailView = Backbone.Marionette.ItemView.extend({
       $(this.el).removeClass( "unread" ).addClass( "read" );
     // Set a new attribute for the difference of date
     this.model.set('timeAgo', diffDate(this.model.get('dateReceived')) );
+  },
+  events: {
+    "click": "showMail"
+  },
+  showMail: function(e) {   
+    var selected = this;
+    // Switch class if the mail is unread
+    var $el = $(selected.el);
+    if( $el.hasClass("unread") )
+      $el.removeClass( "unread" ).addClass( "read" );
+ 
   }
 });
 // Collection View 
