@@ -45,3 +45,8 @@ list.fetch({
 });
 // Call the sort method
 list.sortByField('dateReceived');
+// Create new collection of views for list and render
+var listView = new MailsView({
+  collection: list
+});
+$("#list").append( listView.render().el );
