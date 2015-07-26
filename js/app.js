@@ -1,3 +1,31 @@
+function diffDate(date) {
+  var currentDateUnix = new Date();
+  var formatDate = new Date( date*1000 );
+  var diffMonths = currentDateUnix.getMonth() - formatDate.getMonth();
+  var diffDates = currentDateUnix.getDate() - formatDate.getDate();
+  var diffHours = currentDateUnix.getHours() - formatDate.getHours();
+  var diffMinutes = currentDateUnix.getMinutes() - formatDate.getMinutes();
+  var timeAgo = "";
+  if( diffMonths > 0 )
+    timeAgo += diffMonths + " months and " + diffDates + " days";
+  else {
+    if( diffDates > 0 )
+      timeAgo += diffDates + " days";
+    else {
+      if( diffHours > 0 )
+        timeAgo += diffHours + " hours";
+      else {
+        if( diffMinutes > 0 )
+          timeAgo += diffMinutes + " mins";
+        else
+          timeAgo += "few seconds";
+      }
+    }
+  }
+  timeAgo += " ago";
+  return timeAgo;
+}
+
 //MODEL
 var Mail = Backbone.Model.extend();
 // Collection of mail for the list
@@ -25,7 +53,14 @@ var ContentView = Backbone.Marionette.ItemView.extend({
 // View for mail list item
 var MailView = Backbone.Marionette.ItemView.extend({
   className: 'unread',
-  template: '#mailView'
+  template: '#mailView',
+  initialize: function() {
+    // Set class read 
+    if( this.model.get('read') )
+      $(this.el).removeClass( "unread" ).addClass( "read" );
+    // Set a new attribute for the difference of date
+    this.model.set('timeAgo', diffDate(this.model.get('dateReceived')) );
+  }
 });
 // Collection View 
 var MailsView = Backbone.Marionette.CollectionView.extend({
