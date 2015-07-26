@@ -1,3 +1,9 @@
+// Format Date functions
+function formatDate(date) {
+  var monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"]; 
+  var formatDate = new Date( date*1000 );
+  return monthNames[formatDate.getMonth()] +" "+ formatDate.getDate() +", "+ formatDate.getFullYear();
+}
 function diffDate(date) {
   var currentDateUnix = new Date();
   var formatDate = new Date( date*1000 );
@@ -70,7 +76,14 @@ var MailView = Backbone.Marionette.ItemView.extend({
     var $el = $(selected.el);
     if( $el.hasClass("unread") )
       $el.removeClass( "unread" ).addClass( "read" );
- 
+    // Format date in a new attribute
+    selected.model.set( 'dateReceivedFormat', formatDate(selected.model.get('dateReceived')) );
+    // New view for the content and render
+    var emailView = new ContentView({
+      model: selected.model,
+      className: "selected"
+    });
+    $("#content").html( emailView.render().el ); 
   }
 });
 // Collection View 
